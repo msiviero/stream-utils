@@ -5,7 +5,7 @@ TODO write tsdoc
 */
 export type MapFunction<T1, T2> = (item: T1) => T2;
 
-export class MapStream<T1, T2> extends Transform {
+export class Map<T1, T2> extends Transform {
 
     public constructor(private readonly mapFunction: MapFunction<T1, T2>, opts: TransformOptions = {}) {
         super({ objectMode: true, ...opts });
@@ -19,7 +19,7 @@ export class MapStream<T1, T2> extends Transform {
 
 export type Predicate<T> = (item: T) => boolean;
 
-export class FilterStream<T> extends Transform {
+export class Filter<T> extends Transform {
 
     constructor(private readonly predicate: Predicate<T>, opts: TransformOptions = {}) {
         super({ objectMode: true, ...opts });
@@ -36,7 +36,7 @@ export class FilterStream<T> extends Transform {
 
 export type SerializationFunction<T> = MapFunction<T, string>;
 
-export class DistinctStream<T> extends Transform {
+export class Distinct<T> extends Transform {
 
     private readonly seen: { [idx: string]: boolean } = {};
 
@@ -59,7 +59,7 @@ export class DistinctStream<T> extends Transform {
 
 export type Reducer<T, A> = (item: T, accumulator: A) => A;
 
-export class ReduceStream<T, A> extends Transform {
+export class Reduce<T, A> extends Transform {
 
     constructor(private readonly fn: Reducer<T, A>, private accumulator: A, opts: TransformOptions = {}) {
         super({ objectMode: true, ...opts });
@@ -79,19 +79,43 @@ export class ReduceStream<T, A> extends Transform {
         callback();
     }
 }
-
-// TODO test
-export class CountStream extends ReduceStream<unknown, number> {
+export class Count extends Reduce<unknown, number> {
     constructor() {
         super((_, acc) => ++acc, 0);
     }
 }
 
-// TODO test and implement
-export class LimitStream extends Transform { }
+export class Limit<T> extends Transform {
 
-// TODO test and implement
-export class BufferingStream extends Transform { }
+    private count = 0;
 
-// TODO test and implement
-export class FlatMapStream extends Transform { }
+    constructor(private readonly limit: number, opts: TransformOptions = {}) {
+        super({ objectMode: true, ...opts });
+    }
+
+    public _transform(object: T, _: string, callback: TransformCallback) {
+        this.push(object);
+        callback();
+        this.count++;
+        if (this.count >= this.limit) {
+            this.end();
+        }
+    }
+}
+
+export class FlatMap<T1, T2> extends Transform {
+
+    public constructor(
+        private readonly mapFunction: MapFunction<T1, T2>,
+        opts: TransformOptions = {},
+    ) {
+        super({ objectMode: true, ...opts });
+    }
+
+    public _transform(objects: Iterable<T1>, _: string, callback: TransformCallback) {
+        for (const o of objects) {
+            this.push(this.mapFunction(o));
+        }
+        callback();
+    }
+}
