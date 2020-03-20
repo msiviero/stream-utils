@@ -18,8 +18,7 @@
     "test": "jest",
     "lint": "tslint -c ./tslint.json -p tsconfig.json",
     "clean": "rimraf dist",
-    "deploy": "npm run-script lint && npm run-script build && npm publish --access public",
-    "docs": "typedoc --out docs src"
+    "deploy": "npm run-script lint && npm run-script build && npm publish --access public"
   },
   "jest": {
     "globals": {

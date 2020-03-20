@@ -14,7 +14,15 @@ describe("Splitter", () => {
             .pipe(new Splitter({ highWaterMark: 3, separator: "***" }))
             .pipe(new Collect())
             .on("close", (chunks: string[]) => {
-                expect(chunks).toEqual(["aa", "bbb", "cccccc", "ddd", "eeee", "fffffff"]);
+                expect(chunks)
+                    .toEqual([
+                        Buffer.from("aa"),
+                        Buffer.from("bbb"),
+                        Buffer.from("cccccc"),
+                        Buffer.from("ddd"),
+                        Buffer.from("eeee"),
+                        Buffer.from("fffffff"),
+                    ]);
                 done();
             });
     });
@@ -29,8 +37,16 @@ describe("Splitter", () => {
             ])
             .pipe(new Splitter({ highWaterMark: 3, separator: "***" }))
             .pipe(new Collect())
-            .on("close", (chunks: string[]) => {
-                expect(chunks).toEqual(["aa", "bbb", "cccccc", "ddd", "eeee", "fffffff"]);
+            .on("close", (chunks: Buffer[]) => {
+                expect(chunks)
+                    .toEqual([
+                        Buffer.from("aa"),
+                        Buffer.from("bbb"),
+                        Buffer.from("cccccc"),
+                        Buffer.from("ddd"),
+                        Buffer.from("eeee"),
+                        Buffer.from("fffffff"),
+                    ]);
                 done();
             });
     });

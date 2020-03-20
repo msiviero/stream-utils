@@ -8,14 +8,12 @@ export interface SplitterOpts extends TransformOptions {
 export class Splitter extends Transform {
 
     private readonly separator: Buffer;
-    private readonly encoding: string;
 
     private buffer: Buffer;
 
     constructor(opts: SplitterOpts) {
         super({ objectMode: true, ...opts });
         this.separator = Buffer.from(opts.separator || "\n");
-        this.encoding = opts.encoding || "utf8";
         this.buffer = Buffer.alloc(0);
     }
 
@@ -30,7 +28,7 @@ export class Splitter extends Transform {
         while (position < chunk.length) {
             const slice = chunk.slice(position, position + this.separator.length);
             if (slice.compare(this.separator) === 0) {
-                this.push(this.buffer.toString(this.encoding));
+                this.push(this.buffer);
                 this.buffer = Buffer.alloc(0);
                 position += this.separator.length;
             } else {
@@ -42,7 +40,7 @@ export class Splitter extends Transform {
     }
 
     public _flush(callback: TransformCallback) {
-        this.push(this.buffer.toString(this.encoding));
+        this.push(this.buffer);
         callback();
     }
 }
