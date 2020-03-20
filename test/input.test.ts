@@ -1,6 +1,6 @@
 import { Readable } from "stream";
-import { Splitter } from "../src/source";
 import { Collect } from "../src/sink";
+import { Splitter } from "../src/source";
 
 describe("Splitter", () => {
 

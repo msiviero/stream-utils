@@ -18,7 +18,8 @@
     "test": "jest",
     "lint": "tslint -c ./tslint.json -p tsconfig.json",
     "clean": "rimraf dist",
-    "deploy": "npm run-script lint && npm run-script build && npm publish --access public"
+    "deploy": "npm run-script lint && npm run-script build && npm publish --access public",
+    "docs": "typedoc --out docs src"
   },
   "jest": {
     "globals": {
@@ -42,8 +43,12 @@
     "jest": "^25.1.0",
     "rimraf": "^3.0.2",
     "ts-jest": "^25.2.1",
-    "ts-node": "^8.6.2",
+    "ts-node": "^8.7.0",
     "tslint": "^6.1.0",
+    "typedoc": "^0.17.1",
     "typescript": "^3.8.3"
+  },
+  "dependencies": {
+    "npm-check-updates": "^4.0.4"
   }
 }

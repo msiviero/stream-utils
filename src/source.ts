@@ -1,6 +1,6 @@
 import { Readable, Transform, TransformCallback, TransformOptions } from "stream";
 
-export interface LineSplitterStreamOpts extends TransformOptions {
+export interface SplitterOpts extends TransformOptions {
     separator?: string;
     encoding?: string;
 }
@@ -12,7 +12,7 @@ export class Splitter extends Transform {
 
     private buffer: Buffer;
 
-    constructor(opts: LineSplitterStreamOpts) {
+    constructor(opts: SplitterOpts) {
         super({ objectMode: true, ...opts });
         this.separator = Buffer.from(opts.separator || "\n");
         this.encoding = opts.encoding || "utf8";

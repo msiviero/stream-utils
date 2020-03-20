@@ -1,5 +1,20 @@
 import { Writable } from "stream";
 
+/**
+ * A stream that acts a collector for previous operations results
+ * and provides an "close" event to act on them after finshed
+ *
+ * ```typescript
+ * Readable
+ *  .from([1, 2, 3, 4])
+ *  .pipe(new Collect())
+ *  .on("close", (chunks: string[]) => {
+ *      console.log(chunks); // [1,2,3,4]
+ *  });
+ * ```
+ *
+ * @param T the type of record passed down by previous streams
+ */
 export class Collect<T> extends Writable {
 
     readonly #chunks: T[] = [];

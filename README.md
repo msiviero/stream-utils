@@ -1,38 +1,29 @@
-# Typescript array-like stream processign abstraction for nodejs
+# Node.js array-like stream abstraction
 
 ## Installation
-
 ```
 npm i @msiviero/stream-utils
 ```
 
-## Dependency injection
-
-Base usage is simple as:
+## Simple usage
 
 ```typescript
-import { Container, injectable } from "@msiviero/knit";
 
-@injectable()
-class EmailService {
-  public sendEmail(recipient: string) {
-    // omitted
-  }
-}
+import { createReadStream } from "fs";
+import { Splitter, Map } from "./index";
+import { Filter, Count, Distinct } from "./transform";
+import { Collect } from "./sink";
 
-@injectable()
-class MyApplication {
 
-  constructor(private readonly emailService: EmailService) { }
-
-  public run() {
-    this.emailService.sendEmail("example@gmail.com");
-  }
-}
-
-const app = Container.getInstance().resolve(MyApplication);
-
-app.run();
+createReadStream("./data/bigfile.txt")
+    .pipe(new Splitter({ separator: "\n" }))
+    .pipe(new Map((line: Buffer) => line.toString("utf8")))
+    .pipe(new Distinct((line: string) => line))
+    .pipe(new Map((line: string) => line.split(";")))
+    .pipe(new Filter((columns: string[]) => columns[0] === "to_keep"))
+    .pipe(new Count())
+    .pipe(new Collect())
+    .on("end", (items) => {
+        console.log(`Countr of remaining records is: ${items[0]}`);
+    });
 ```
-
-Note that all instances all singleton by default
