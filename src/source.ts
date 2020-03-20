@@ -5,18 +5,18 @@ export interface LineSplitterStreamOpts extends TransformOptions {
     encoding?: string;
 }
 
-export class LineSplitterStream extends Transform {
+export class Splitter extends Transform {
 
-    readonly #separator: Buffer;
-    readonly #encoding: string;
+    private readonly separator: Buffer;
+    private readonly encoding: string;
 
-    #buffer: Buffer;
+    private buffer: Buffer;
 
     constructor(opts: LineSplitterStreamOpts) {
         super({ objectMode: true, ...opts });
-        this.#separator = Buffer.from(opts.separator || "\n");
-        this.#encoding = opts.encoding || "utf8";
-        this.#buffer = Buffer.alloc(0);
+        this.separator = Buffer.from(opts.separator || "\n");
+        this.encoding = opts.encoding || "utf8";
+        this.buffer = Buffer.alloc(0);
     }
 
     public _transform(chunk: Buffer, _: string, callback: TransformCallback) {
@@ -28,13 +28,13 @@ export class LineSplitterStream extends Transform {
         let position = 0;
 
         while (position < chunk.length) {
-            const slice = chunk.slice(position, position + this.#separator.length);
-            if (slice.compare(this.#separator) === 0) {
-                this.push(this.#buffer.toString(this.#encoding));
-                this.#buffer = Buffer.alloc(0);
-                position += this.#separator.length;
+            const slice = chunk.slice(position, position + this.separator.length);
+            if (slice.compare(this.separator) === 0) {
+                this.push(this.buffer.toString(this.encoding));
+                this.buffer = Buffer.alloc(0);
+                position += this.separator.length;
             } else {
-                this.#buffer = Buffer.concat([this.#buffer, Buffer.of(chunk[position])]);
+                this.buffer = Buffer.concat([this.buffer, Buffer.of(chunk[position])]);
                 position++;
             }
         }
@@ -42,7 +42,7 @@ export class LineSplitterStream extends Transform {
     }
 
     public _flush(callback: TransformCallback) {
-        this.push(this.#buffer.toString(this.#encoding));
+        this.push(this.buffer.toString(this.encoding));
         callback();
     }
 }

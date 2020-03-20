@@ -1,8 +1,8 @@
 import { Readable } from "stream";
-import { LineSplitterStream } from "../src/input";
-import { TestOutStream } from "./util";
+import { Splitter } from "../src/source";
+import { Collect } from "../src/sink";
 
-describe("LineSplitterStream", () => {
+describe("Splitter", () => {
 
     it("should be able to parse buffer in lines according to separator", (done) => {
 
@@ -11,8 +11,8 @@ describe("LineSplitterStream", () => {
                 Buffer.from("aa***bbb***ccc"),
                 Buffer.from("ccc***ddd***eeee***fffffff"),
             ])
-            .pipe(new LineSplitterStream({ highWaterMark: 3, separator: "***" }))
-            .pipe(new TestOutStream())
+            .pipe(new Splitter({ highWaterMark: 3, separator: "***" }))
+            .pipe(new Collect())
             .on("close", (chunks: string[]) => {
                 expect(chunks).toEqual(["aa", "bbb", "cccccc", "ddd", "eeee", "fffffff"]);
                 done();
@@ -27,8 +27,8 @@ describe("LineSplitterStream", () => {
                 Buffer.from("aa***bbb***ccc"),
                 Buffer.from("ccc***ddd***eeee***fffffff"),
             ])
-            .pipe(new LineSplitterStream({ highWaterMark: 3, separator: "***" }))
-            .pipe(new TestOutStream())
+            .pipe(new Splitter({ highWaterMark: 3, separator: "***" }))
+            .pipe(new Collect())
             .on("close", (chunks: string[]) => {
                 expect(chunks).toEqual(["aa", "bbb", "cccccc", "ddd", "eeee", "fffffff"]);
                 done();

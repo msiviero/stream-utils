@@ -1,6 +1,6 @@
 import { Writable } from "stream";
 
-export class TestOutStream<T> extends Writable {
+export class Collect<T> extends Writable {
 
     readonly #chunks: T[] = [];
 
