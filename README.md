@@ -25,4 +25,4 @@ createReadStream("./data/bigfile.txt")
     });
 ```
 
-Typedocs with full documentation at [https://msiviero.github.io/stream-utils/index.html]
+Typedocs with full documentation at https://msiviero.github.io/stream-utils
