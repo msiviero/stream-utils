@@ -7,3 +7,4 @@ yarn.lock
 package-lock.json
 jest.config.js
 .vscode
+docs
