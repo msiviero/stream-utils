@@ -10,10 +10,7 @@ npm i @msiviero/stream-utils
 ```typescript
 
 import { createReadStream } from "fs";
-import { Splitter, Map } from "./index";
-import { Filter, Count, Distinct } from "./transform";
-import { Collect } from "./sink";
-
+import { Collect, Count, Distinct, Filter, Map, Splitter } from "@msiviero/stream-utils";
 
 createReadStream("./data/bigfile.txt")
     .pipe(new Splitter({ separator: "\n" }))
@@ -27,3 +24,5 @@ createReadStream("./data/bigfile.txt")
         console.log(`Countr of remaining records is: ${items[0]}`);
     });
 ```
+
+Typedocs with full documentation at [https://msiviero.github.io/stream-utils/index.html]

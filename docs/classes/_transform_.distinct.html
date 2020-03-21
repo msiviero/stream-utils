@@ -69,11 +69,30 @@
 <div class="container container-main">
 	<div class="row">
 		<div class="col-8 col-content">
+			<section class="tsd-panel tsd-comment">
+				<div class="tsd-comment tsd-typography">
+					<div class="lead">
+						<p>A transform stream that filters equal elements. Equality is determined by
+						a provided serializing function</p>
+					</div>
+					<pre><code class="language-typescript">Readable
+ .from([<span class="hljs-number">1</span>, <span class="hljs-number">0</span>, <span class="hljs-number">11</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">15</span>, <span class="hljs-number">1</span>, <span class="hljs-number">11</span>, <span class="hljs-number">5</span>, <span class="hljs-number">11</span>])
+ .pipe(<span class="hljs-keyword">new</span> Distinct(<span class="hljs-function">(<span class="hljs-params">item: <span class="hljs-built_in">number</span></span>) =&gt;</span> item.toString(<span class="hljs-number">10</span>)))
+ .on(<span class="hljs-string">"close"</span>, <span class="hljs-function">(<span class="hljs-params">chunks: <span class="hljs-built_in">number</span>[]</span>) =&gt;</span> {
+     <span class="hljs-built_in">console</span>.log(chunks); <span class="hljs-comment">// [1, 0, 11, 15, 5]</span>
+ });</code></pre>
+				</div>
+			</section>
 			<section class="tsd-panel tsd-type-parameters">
 				<h3>Type parameters</h3>
 				<ul class="tsd-type-parameters">
 					<li>
 						<h4>T</h4>
+						<div class="tsd-comment tsd-typography">
+							<div class="lead">
+								<p>the type of record passed down by previous streams</p>
+							</div>
+						</div>
 					</li>
 				</ul>
 			</section>
@@ -187,7 +206,7 @@
 							<aside class="tsd-sources">
 								<p>Overrides Transform.__constructor</p>
 								<ul>
-									<li>Defined in <a href="https://github.com/msiviero/stream-utils/blob/f06d4eb/src/transform.ts#L41">src/transform.ts:41</a></li>
+									<li>Defined in <a href="https://github.com/msiviero/stream-utils/blob/065d8d2/src/transform.ts#L82">src/transform.ts:82</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -267,7 +286,7 @@
 					<div class="tsd-signature tsd-kind-icon">seen<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol">{}</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/msiviero/stream-utils/blob/f06d4eb/src/transform.ts#L41">src/transform.ts:41</a></li>
+							<li>Defined in <a href="https://github.com/msiviero/stream-utils/blob/065d8d2/src/transform.ts#L82">src/transform.ts:82</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-type-declaration">
@@ -285,7 +304,7 @@
 					<div class="tsd-signature tsd-kind-icon">serialization<wbr>Function<span class="tsd-signature-symbol">:</span> <a href="../modules/_transform_.html#serializationfunction" class="tsd-signature-type">SerializationFunction</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/msiviero/stream-utils/blob/f06d4eb/src/transform.ts#L44">src/transform.ts:44</a></li>
+							<li>Defined in <a href="https://github.com/msiviero/stream-utils/blob/065d8d2/src/transform.ts#L85">src/transform.ts:85</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -397,7 +416,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<p>Inherited from <a href="_source_.splitter.html">Splitter</a>.<a href="_source_.splitter.html#_destroy">_destroy</a></p>
-								<p>Overrides <a href="_source_.iterablestream.html">IterableStream</a>.<a href="_source_.iterablestream.html#_destroy">_destroy</a></p>
+								<p>Overrides Readable._destroy</p>
 								<ul>
 									<li>Defined in node_modules/@types/node/stream.d.ts:238</li>
 								</ul>
@@ -534,7 +553,7 @@
 							<aside class="tsd-sources">
 								<p>Overrides Transform._transform</p>
 								<ul>
-									<li>Defined in <a href="https://github.com/msiviero/stream-utils/blob/f06d4eb/src/transform.ts#L50">src/transform.ts:50</a></li>
+									<li>Defined in <a href="https://github.com/msiviero/stream-utils/blob/065d8d2/src/transform.ts#L91">src/transform.ts:91</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>

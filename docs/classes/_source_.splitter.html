@@ -69,6 +69,19 @@
 <div class="container container-main">
 	<div class="row">
 		<div class="col-8 col-content">
+			<section class="tsd-panel tsd-comment">
+				<div class="tsd-comment tsd-typography">
+					<div class="lead">
+						<p>A transform stream that splits a bytes IO stream into chunks by a separator</p>
+					</div>
+					<pre><code class="language-typescript">createReadStream(<span class="hljs-string">"./data/bigfile.txt"</span>)
+ .pipe(<span class="hljs-keyword">new</span> Splitter({ separator: <span class="hljs-string">"\n"</span> }))
+ .pipe(<span class="hljs-keyword">new</span> Collect())
+ .on(<span class="hljs-string">"close"</span>, <span class="hljs-function">(<span class="hljs-params">chunks: Buffer[]</span>) =&gt;</span> {
+     <span class="hljs-built_in">console</span>.log(chunks); <span class="hljs-comment">//</span>
+ });</code></pre>
+				</div>
+			</section>
 			<section class="tsd-panel tsd-hierarchy">
 				<h3>Hierarchy</h3>
 				<ul class="tsd-hierarchy">
@@ -179,7 +192,7 @@
 							<aside class="tsd-sources">
 								<p>Overrides Transform.__constructor</p>
 								<ul>
-									<li>Defined in <a href="https://github.com/msiviero/stream-utils/blob/f06d4eb/src/source.ts#L12">src/source.ts:12</a></li>
+									<li>Defined in <a href="https://github.com/msiviero/stream-utils/blob/065d8d2/src/source.ts#L24">src/source.ts:24</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -201,7 +214,7 @@
 					<div class="tsd-signature tsd-kind-icon">buffer<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Buffer</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/msiviero/stream-utils/blob/f06d4eb/src/source.ts#L12">src/source.ts:12</a></li>
+							<li>Defined in <a href="https://github.com/msiviero/stream-utils/blob/065d8d2/src/source.ts#L24">src/source.ts:24</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -266,7 +279,7 @@
 					<div class="tsd-signature tsd-kind-icon">separator<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Buffer</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/msiviero/stream-utils/blob/f06d4eb/src/source.ts#L10">src/source.ts:10</a></li>
+							<li>Defined in <a href="https://github.com/msiviero/stream-utils/blob/065d8d2/src/source.ts#L22">src/source.ts:22</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -378,7 +391,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<p>Inherited from <a href="_source_.splitter.html">Splitter</a>.<a href="_source_.splitter.html#_destroy">_destroy</a></p>
-								<p>Overrides <a href="_source_.iterablestream.html">IterableStream</a>.<a href="_source_.iterablestream.html#_destroy">_destroy</a></p>
+								<p>Overrides Readable._destroy</p>
 								<ul>
 									<li>Defined in node_modules/@types/node/stream.d.ts:238</li>
 								</ul>
@@ -467,7 +480,7 @@
 							<aside class="tsd-sources">
 								<p>Overrides <a href="_transform_.map.html">Map</a>.<a href="_transform_.map.html#_flush">_flush</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/msiviero/stream-utils/blob/f06d4eb/src/source.ts#L42">src/source.ts:42</a></li>
+									<li>Defined in <a href="https://github.com/msiviero/stream-utils/blob/065d8d2/src/source.ts#L54">src/source.ts:54</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -515,7 +528,7 @@
 							<aside class="tsd-sources">
 								<p>Overrides Transform._transform</p>
 								<ul>
-									<li>Defined in <a href="https://github.com/msiviero/stream-utils/blob/f06d4eb/src/source.ts#L20">src/source.ts:20</a></li>
+									<li>Defined in <a href="https://github.com/msiviero/stream-utils/blob/065d8d2/src/source.ts#L32">src/source.ts:32</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -2759,9 +2772,6 @@
 			</nav>
 			<nav class="tsd-navigation secondary menu-sticky">
 				<ul class="before-current">
-					<li class=" tsd-kind-class tsd-parent-kind-module">
-						<a href="_source_.iterablestream.html" class="tsd-kind-icon">Iterable<wbr>Stream</a>
-					</li>
 				</ul>
 				<ul class="current">
 					<li class="current tsd-kind-class tsd-parent-kind-module">

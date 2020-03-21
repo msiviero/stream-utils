@@ -69,6 +69,19 @@
 <div class="container container-main">
 	<div class="row">
 		<div class="col-8 col-content">
+			<section class="tsd-panel tsd-comment">
+				<div class="tsd-comment tsd-typography">
+					<div class="lead">
+						<p>A specialized reduce stream aggregates items counting</p>
+					</div>
+					<pre><code class="language-typescript">Readable
+ .from([<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">4</span>])
+ .pipe(<span class="hljs-keyword">new</span> Count())
+ .on(<span class="hljs-string">"close"</span>, <span class="hljs-function">(<span class="hljs-params">chunks: <span class="hljs-built_in">number</span>[]</span>) =&gt;</span> {
+     <span class="hljs-built_in">console</span>.log(chunks); <span class="hljs-comment">// [4]</span>
+ });</code></pre>
+				</div>
+			</section>
 			<section class="tsd-panel tsd-hierarchy">
 				<h3>Hierarchy</h3>
 				<ul class="tsd-hierarchy">
@@ -177,7 +190,7 @@
 							<aside class="tsd-sources">
 								<p>Overrides <a href="_transform_.reduce.html">Reduce</a>.<a href="_transform_.reduce.html#constructor">constructor</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/msiviero/stream-utils/blob/f06d4eb/src/transform.ts#L82">src/transform.ts:82</a></li>
+									<li>Defined in <a href="https://github.com/msiviero/stream-utils/blob/065d8d2/src/transform.ts#L151">src/transform.ts:151</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <a href="_transform_.count.html" class="tsd-signature-type">Count</a></h4>
@@ -350,7 +363,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<p>Inherited from <a href="_source_.splitter.html">Splitter</a>.<a href="_source_.splitter.html#_destroy">_destroy</a></p>
-								<p>Overrides <a href="_source_.iterablestream.html">IterableStream</a>.<a href="_source_.iterablestream.html#_destroy">_destroy</a></p>
+								<p>Overrides Readable._destroy</p>
 								<ul>
 									<li>Defined in node_modules/@types/node/stream.d.ts:238</li>
 								</ul>
@@ -398,7 +411,7 @@
 								<p>Inherited from <a href="_transform_.reduce.html">Reduce</a>.<a href="_transform_.reduce.html#_final">_final</a></p>
 								<p>Overrides <a href="_source_.splitter.html">Splitter</a>.<a href="_source_.splitter.html#_final">_final</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/msiviero/stream-utils/blob/f06d4eb/src/transform.ts#L78">src/transform.ts:78</a></li>
+									<li>Defined in <a href="https://github.com/msiviero/stream-utils/blob/065d8d2/src/transform.ts#L134">src/transform.ts:134</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -441,7 +454,7 @@
 								<p>Inherited from <a href="_transform_.reduce.html">Reduce</a>.<a href="_transform_.reduce.html#_flush">_flush</a></p>
 								<p>Overrides <a href="_transform_.map.html">Map</a>.<a href="_transform_.map.html#_flush">_flush</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/msiviero/stream-utils/blob/f06d4eb/src/transform.ts#L73">src/transform.ts:73</a></li>
+									<li>Defined in <a href="https://github.com/msiviero/stream-utils/blob/065d8d2/src/transform.ts#L129">src/transform.ts:129</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -490,7 +503,7 @@
 								<p>Inherited from <a href="_transform_.reduce.html">Reduce</a>.<a href="_transform_.reduce.html#_transform">_transform</a></p>
 								<p>Overrides Transform._transform</p>
 								<ul>
-									<li>Defined in <a href="https://github.com/msiviero/stream-utils/blob/f06d4eb/src/transform.ts#L68">src/transform.ts:68</a></li>
+									<li>Defined in <a href="https://github.com/msiviero/stream-utils/blob/065d8d2/src/transform.ts#L124">src/transform.ts:124</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>

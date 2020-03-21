@@ -69,14 +69,37 @@
 <div class="container container-main">
 	<div class="row">
 		<div class="col-8 col-content">
+			<section class="tsd-panel tsd-comment">
+				<div class="tsd-comment tsd-typography">
+					<div class="lead">
+						<p>A transform stream that maps previous stream elements to another type</p>
+					</div>
+					<pre><code class="language-typescript">Readable
+ .from([<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">4</span>])
+ .pipe(<span class="hljs-keyword">new</span> Map(<span class="hljs-function">(<span class="hljs-params">n: <span class="hljs-built_in">number</span></span>) =&gt;</span> n + <span class="hljs-number">1</span>))
+ .on(<span class="hljs-string">"close"</span>, <span class="hljs-function">(<span class="hljs-params">chunks: <span class="hljs-built_in">number</span>[]</span>) =&gt;</span> {
+     <span class="hljs-built_in">console</span>.log(chunks); <span class="hljs-comment">// [2, 3, 4, 5]</span>
+ });</code></pre>
+				</div>
+			</section>
 			<section class="tsd-panel tsd-type-parameters">
 				<h3>Type parameters</h3>
 				<ul class="tsd-type-parameters">
 					<li>
 						<h4>T1</h4>
+						<div class="tsd-comment tsd-typography">
+							<div class="lead">
+								<p>the type of record passed down by previous streams</p>
+							</div>
+						</div>
 					</li>
 					<li>
 						<h4>T2</h4>
+						<div class="tsd-comment tsd-typography">
+							<div class="lead">
+								<p>the type returned by the mapping function passed to the following streams</p>
+							</div>
+						</div>
 					</li>
 				</ul>
 			</section>
@@ -189,7 +212,7 @@
 							<aside class="tsd-sources">
 								<p>Overrides Transform.__constructor</p>
 								<ul>
-									<li>Defined in <a href="https://github.com/msiviero/stream-utils/blob/f06d4eb/src/transform.ts#L8">src/transform.ts:8</a></li>
+									<li>Defined in <a href="https://github.com/msiviero/stream-utils/blob/065d8d2/src/transform.ts#L20">src/transform.ts:20</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -225,7 +248,7 @@
 					<div class="tsd-signature tsd-kind-icon">map<wbr>Function<span class="tsd-signature-symbol">:</span> <a href="../modules/_transform_.html#mapfunction" class="tsd-signature-type">MapFunction</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T1</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">T2</span><span class="tsd-signature-symbol">&gt;</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/msiviero/stream-utils/blob/f06d4eb/src/transform.ts#L10">src/transform.ts:10</a></li>
+							<li>Defined in <a href="https://github.com/msiviero/stream-utils/blob/065d8d2/src/transform.ts#L22">src/transform.ts:22</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -381,7 +404,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<p>Inherited from <a href="_source_.splitter.html">Splitter</a>.<a href="_source_.splitter.html#_destroy">_destroy</a></p>
-								<p>Overrides <a href="_source_.iterablestream.html">IterableStream</a>.<a href="_source_.iterablestream.html#_destroy">_destroy</a></p>
+								<p>Overrides Readable._destroy</p>
 								<ul>
 									<li>Defined in node_modules/@types/node/stream.d.ts:238</li>
 								</ul>
@@ -518,7 +541,7 @@
 							<aside class="tsd-sources">
 								<p>Overrides Transform._transform</p>
 								<ul>
-									<li>Defined in <a href="https://github.com/msiviero/stream-utils/blob/f06d4eb/src/transform.ts#L14">src/transform.ts:14</a></li>
+									<li>Defined in <a href="https://github.com/msiviero/stream-utils/blob/065d8d2/src/transform.ts#L26">src/transform.ts:26</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>

@@ -9,7 +9,7 @@ describe("Map", () => {
         Readable
             .from(["a", "bb", "ccc"])
             .pipe(new Map((item: string) => item.length))
-            .pipe(new Collect()).on("close", (chunks: string[]) => {
+            .pipe(new Collect()).on("close", (chunks: number[]) => {
                 expect(chunks).toEqual([1, 2, 3]);
                 done();
             });
@@ -24,7 +24,7 @@ describe("Filter", () => {
             .from([1, 0, 11, 13, 12, 15, 7, 5, 6, 8])
             .pipe(new Filter((item: number) => item % 2 === 0))
             .pipe(new Collect())
-            .on("close", (chunks: string[]) => {
+            .on("close", (chunks: number[]) => {
                 expect(chunks).toEqual([0, 12, 6, 8]);
                 done();
             });
@@ -39,7 +39,7 @@ describe("Distinct", () => {
             .from([1, 0, 11, 0, 0, 15, 1, 11, 5, 11])
             .pipe(new Distinct((item: number) => item.toString(10)))
             .pipe(new Collect())
-            .on("close", (chunks: string[]) => {
+            .on("close", (chunks: number[]) => {
                 expect(chunks).toEqual([1, 0, 11, 15, 5]);
                 done();
             });

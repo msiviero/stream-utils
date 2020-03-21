@@ -69,6 +69,24 @@
 <div class="container container-main">
 	<div class="row">
 		<div class="col-8 col-content">
+			<section class="tsd-panel tsd-comment">
+				<div class="tsd-comment tsd-typography">
+					<div class="lead">
+						<p>A transform stream that flattens stream of iterables using the provided function</p>
+					</div>
+					<pre><code class="language-typescript">Readable
+ .from([[<span class="hljs-string">"a"</span>, <span class="hljs-string">"aa"</span>, <span class="hljs-string">"bbb"</span>], [<span class="hljs-string">"dddd"</span>, <span class="hljs-string">"eeeee"</span>], [<span class="hljs-string">"ffffff"</span>, <span class="hljs-string">"hhhhhhh"</span>]])
+ .pipe(<span class="hljs-keyword">new</span> FlatMap(<span class="hljs-function">(<span class="hljs-params">item: <span class="hljs-built_in">string</span></span>) =&gt;</span> item.length))
+ .on(<span class="hljs-string">"close"</span>, <span class="hljs-function">(<span class="hljs-params">chunks: <span class="hljs-built_in">number</span>[]</span>) =&gt;</span> {
+     <span class="hljs-built_in">console</span>.log(chunks); <span class="hljs-comment">// [1, 2, 3, 4, 5, 6, 7]</span>
+ });</code></pre>
+					<dl class="tsd-comment-tags">
+						<dt>param</dt>
+						<dd><p>the type of record passed down by previous streams</p>
+						</dd>
+					</dl>
+				</div>
+			</section>
 			<section class="tsd-panel tsd-type-parameters">
 				<h3>Type parameters</h3>
 				<ul class="tsd-type-parameters">
@@ -189,7 +207,7 @@
 							<aside class="tsd-sources">
 								<p>Overrides Transform.__constructor</p>
 								<ul>
-									<li>Defined in <a href="https://github.com/msiviero/stream-utils/blob/f06d4eb/src/transform.ts#L106">src/transform.ts:106</a></li>
+									<li>Defined in <a href="https://github.com/msiviero/stream-utils/blob/065d8d2/src/transform.ts#L201">src/transform.ts:201</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -225,7 +243,7 @@
 					<div class="tsd-signature tsd-kind-icon">map<wbr>Function<span class="tsd-signature-symbol">:</span> <a href="../modules/_transform_.html#mapfunction" class="tsd-signature-type">MapFunction</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T1</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">T2</span><span class="tsd-signature-symbol">&gt;</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/msiviero/stream-utils/blob/f06d4eb/src/transform.ts#L109">src/transform.ts:109</a></li>
+							<li>Defined in <a href="https://github.com/msiviero/stream-utils/blob/065d8d2/src/transform.ts#L204">src/transform.ts:204</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -381,7 +399,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<p>Inherited from <a href="_source_.splitter.html">Splitter</a>.<a href="_source_.splitter.html#_destroy">_destroy</a></p>
-								<p>Overrides <a href="_source_.iterablestream.html">IterableStream</a>.<a href="_source_.iterablestream.html#_destroy">_destroy</a></p>
+								<p>Overrides Readable._destroy</p>
 								<ul>
 									<li>Defined in node_modules/@types/node/stream.d.ts:238</li>
 								</ul>
@@ -518,7 +536,7 @@
 							<aside class="tsd-sources">
 								<p>Overrides Transform._transform</p>
 								<ul>
-									<li>Defined in <a href="https://github.com/msiviero/stream-utils/blob/f06d4eb/src/transform.ts#L115">src/transform.ts:115</a></li>
+									<li>Defined in <a href="https://github.com/msiviero/stream-utils/blob/065d8d2/src/transform.ts#L210">src/transform.ts:210</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>

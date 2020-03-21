@@ -1,7 +1,7 @@
 import { Writable } from "stream";
 
 /**
- * A stream that acts a collector for previous operations results
+ * A writable stream that acts a collector for previous operations results
  * and provides an "close" event to act on them after finshed
  *
  * ```typescript

@@ -1,10 +1,22 @@
-import { Readable, Transform, TransformCallback, TransformOptions } from "stream";
+import { Transform, TransformCallback, TransformOptions } from "stream";
 
 export interface SplitterOpts extends TransformOptions {
     separator?: string;
     encoding?: string;
 }
 
+/**
+ * A transform stream that splits a bytes IO stream into chunks by a separator
+ *
+ * ```typescript
+ * createReadStream("./data/bigfile.txt")
+ *  .pipe(new Splitter({ separator: "\n" }))
+ *  .pipe(new Collect())
+ *  .on("close", (chunks: Buffer[]) => {
+ *      console.log(chunks); //
+ *  });
+ * ```
+ */
 export class Splitter extends Transform {
 
     private readonly separator: Buffer;
@@ -42,12 +54,5 @@ export class Splitter extends Transform {
     public _flush(callback: TransformCallback) {
         this.push(this.buffer);
         callback();
-    }
-}
-
-export class IterableStream extends Readable {
-
-    public static from<T>(iterable: Iterable<T>) {
-        return Readable.from(iterable)
     }
 }

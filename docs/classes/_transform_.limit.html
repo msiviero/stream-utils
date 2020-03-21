@@ -69,11 +69,29 @@
 <div class="container container-main">
 	<div class="row">
 		<div class="col-8 col-content">
+			<section class="tsd-panel tsd-comment">
+				<div class="tsd-comment tsd-typography">
+					<div class="lead">
+						<p>A transform stream that reduces the number of elements processed</p>
+					</div>
+					<pre><code class="language-typescript">Readable
+ .from([<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">4</span>])
+ .pipe(<span class="hljs-keyword">new</span> Limit(<span class="hljs-number">2</span>))
+ .on(<span class="hljs-string">"close"</span>, <span class="hljs-function">(<span class="hljs-params">chunks: <span class="hljs-built_in">number</span>[]</span>) =&gt;</span> {
+     <span class="hljs-built_in">console</span>.log(chunks); <span class="hljs-comment">// [1, 2]</span>
+ });</code></pre>
+				</div>
+			</section>
 			<section class="tsd-panel tsd-type-parameters">
 				<h3>Type parameters</h3>
 				<ul class="tsd-type-parameters">
 					<li>
 						<h4>T</h4>
+						<div class="tsd-comment tsd-typography">
+							<div class="lead">
+								<p>the type of record passed down by previous streams</p>
+							</div>
+						</div>
 					</li>
 				</ul>
 			</section>
@@ -187,7 +205,7 @@
 							<aside class="tsd-sources">
 								<p>Overrides Transform.__constructor</p>
 								<ul>
-									<li>Defined in <a href="https://github.com/msiviero/stream-utils/blob/f06d4eb/src/transform.ts#L90">src/transform.ts:90</a></li>
+									<li>Defined in <a href="https://github.com/msiviero/stream-utils/blob/065d8d2/src/transform.ts#L172">src/transform.ts:172</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -212,7 +230,7 @@
 					<div class="tsd-signature tsd-kind-icon">count<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> = 0</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/msiviero/stream-utils/blob/f06d4eb/src/transform.ts#L90">src/transform.ts:90</a></li>
+							<li>Defined in <a href="https://github.com/msiviero/stream-utils/blob/065d8d2/src/transform.ts#L172">src/transform.ts:172</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -233,7 +251,7 @@
 					<div class="tsd-signature tsd-kind-icon">limit<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/msiviero/stream-utils/blob/f06d4eb/src/transform.ts#L92">src/transform.ts:92</a></li>
+							<li>Defined in <a href="https://github.com/msiviero/stream-utils/blob/065d8d2/src/transform.ts#L174">src/transform.ts:174</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -389,7 +407,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<p>Inherited from <a href="_source_.splitter.html">Splitter</a>.<a href="_source_.splitter.html#_destroy">_destroy</a></p>
-								<p>Overrides <a href="_source_.iterablestream.html">IterableStream</a>.<a href="_source_.iterablestream.html#_destroy">_destroy</a></p>
+								<p>Overrides Readable._destroy</p>
 								<ul>
 									<li>Defined in node_modules/@types/node/stream.d.ts:238</li>
 								</ul>
@@ -526,7 +544,7 @@
 							<aside class="tsd-sources">
 								<p>Overrides Transform._transform</p>
 								<ul>
-									<li>Defined in <a href="https://github.com/msiviero/stream-utils/blob/f06d4eb/src/transform.ts#L96">src/transform.ts:96</a></li>
+									<li>Defined in <a href="https://github.com/msiviero/stream-utils/blob/065d8d2/src/transform.ts#L178">src/transform.ts:178</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
