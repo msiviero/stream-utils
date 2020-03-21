@@ -34,9 +34,12 @@ export class Map<T1, T2> extends Transform {
 }
 
 /**
- * A function that takes an element and returns a boolean
+ * A function used to filter items
  *
  * @typeParam T the type of record passed to the function
+ *
+ * @param item the source item to decide wheter to keep
+ * @returns true if the item should be kept
  */
 export type Predicate<T> = (item: T) => boolean;
 
@@ -77,6 +80,8 @@ export class Filter<T> extends Transform {
  * A function that takes an element and returns a string representing it
  *
  * @typeParam T the type of record passed to the function
+ *
+ * @param item the source item to serialize
  * @returns The string representation of the object
  */
 export type SerializationFunction<T> = MapFunction<T, string>;
@@ -127,6 +132,8 @@ export class Distinct<T> extends Transform {
  * @typeParam T the type of record passed to the function
  * @typeParam A the type of the aggregator object
  *
+ * @param item the source item to aggregate
+ * @param accumulator the prevoius step state
  * @returns The new aggregator state
  */
 export type Reducer<T, A> = (item: T, accumulator: A) => A;
