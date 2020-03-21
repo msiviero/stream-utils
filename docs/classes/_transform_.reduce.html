@@ -143,11 +143,11 @@
 							<ul class="tsd-index-list">
 								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-private"><a href="_transform_.reduce.html#accumulator" class="tsd-kind-icon">accumulator</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-inherited"><a href="_transform_.reduce.html#destroyed" class="tsd-kind-icon">destroyed</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-private"><a href="_transform_.reduce.html#fn" class="tsd-kind-icon">fn</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-inherited"><a href="_transform_.reduce.html#readable" class="tsd-kind-icon">readable</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-inherited"><a href="_transform_.reduce.html#readablehighwatermark" class="tsd-kind-icon">readable<wbr>High<wbr>Water<wbr>Mark</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-inherited"><a href="_transform_.reduce.html#readablelength" class="tsd-kind-icon">readable<wbr>Length</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-inherited"><a href="_transform_.reduce.html#readableobjectmode" class="tsd-kind-icon">readable<wbr>Object<wbr>Mode</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-private"><a href="_transform_.reduce.html#reducer" class="tsd-kind-icon">reducer</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-inherited"><a href="_transform_.reduce.html#writable" class="tsd-kind-icon">writable</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-inherited"><a href="_transform_.reduce.html#writablecorked" class="tsd-kind-icon">writable<wbr>Corked</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-inherited"><a href="_transform_.reduce.html#writableended" class="tsd-kind-icon">writable<wbr>Ended</a></li>
@@ -211,26 +211,38 @@
 					<a name="constructor" class="tsd-anchor"></a>
 					<h3>constructor</h3>
 					<ul class="tsd-signatures tsd-kind-constructor tsd-parent-kind-class tsd-is-overwrite">
-						<li class="tsd-signature tsd-kind-icon">new <wbr>Reduce<span class="tsd-signature-symbol">(</span>fn<span class="tsd-signature-symbol">: </span><a href="../modules/_transform_.html#reducer" class="tsd-signature-type">Reducer</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">A</span><span class="tsd-signature-symbol">&gt;</span>, accumulator<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">A</span>, opts<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">TransformOptions</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="_transform_.reduce.html" class="tsd-signature-type">Reduce</a></li>
+						<li class="tsd-signature tsd-kind-icon">new <wbr>Reduce<span class="tsd-signature-symbol">(</span>reducer<span class="tsd-signature-symbol">: </span><a href="../modules/_transform_.html#reducer" class="tsd-signature-type">Reducer</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">A</span><span class="tsd-signature-symbol">&gt;</span>, accumulator<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">A</span>, opts<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">TransformOptions</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="_transform_.reduce.html" class="tsd-signature-type">Reduce</a></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<p>Overrides Transform.__constructor</p>
 								<ul>
-									<li>Defined in <a href="https://github.com/msiviero/stream-utils/blob/065d8d2/src/transform.ts#L118">src/transform.ts:118</a></li>
+									<li>Defined in <a href="https://github.com/msiviero/stream-utils/blob/dcfbe77/src/transform.ts#L149">src/transform.ts:149</a></li>
 								</ul>
 							</aside>
+							<div class="tsd-comment tsd-typography">
+							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
-									<h5>fn: <a href="../modules/_transform_.html#reducer" class="tsd-signature-type">Reducer</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">A</span><span class="tsd-signature-symbol">&gt;</span></h5>
+									<h5>reducer: <a href="../modules/_transform_.html#reducer" class="tsd-signature-type">Reducer</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">A</span><span class="tsd-signature-symbol">&gt;</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<div class="lead">
+											<p>The reducer function used to aggregate items</p>
+										</div>
+									</div>
 								</li>
 								<li>
 									<h5>accumulator: <span class="tsd-signature-type">A</span></h5>
 								</li>
 								<li>
 									<h5><span class="tsd-flag ts-flagDefault value">Default value</span> opts: <span class="tsd-signature-type">TransformOptions</span><span class="tsd-signature-symbol"> = {}</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<div class="lead">
+											<p>The stream&#39;s options</p>
+										</div>
+									</div>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <a href="_transform_.reduce.html" class="tsd-signature-type">Reduce</a></h4>
@@ -246,7 +258,7 @@
 					<div class="tsd-signature tsd-kind-icon">accumulator<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">A</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/msiviero/stream-utils/blob/065d8d2/src/transform.ts#L120">src/transform.ts:120</a></li>
+							<li>Defined in <a href="https://github.com/msiviero/stream-utils/blob/dcfbe77/src/transform.ts#L157">src/transform.ts:157</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -258,16 +270,6 @@
 						<p>Inherited from <a href="_source_.splitter.html">Splitter</a>.<a href="_source_.splitter.html#destroyed">destroyed</a></p>
 						<ul>
 							<li>Defined in node_modules/@types/node/stream.d.ts:32</li>
-						</ul>
-					</aside>
-				</section>
-				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-private">
-					<a name="fn" class="tsd-anchor"></a>
-					<h3><span class="tsd-flag ts-flagPrivate">Private</span> fn</h3>
-					<div class="tsd-signature tsd-kind-icon">fn<span class="tsd-signature-symbol">:</span> <a href="../modules/_transform_.html#reducer" class="tsd-signature-type">Reducer</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">A</span><span class="tsd-signature-symbol">&gt;</span></div>
-					<aside class="tsd-sources">
-						<ul>
-							<li>Defined in <a href="https://github.com/msiviero/stream-utils/blob/065d8d2/src/transform.ts#L120">src/transform.ts:120</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -314,6 +316,21 @@
 							<li>Defined in node_modules/@types/node/stream.d.ts:31</li>
 						</ul>
 					</aside>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-private">
+					<a name="reducer" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagPrivate">Private</span> reducer</h3>
+					<div class="tsd-signature tsd-kind-icon">reducer<span class="tsd-signature-symbol">:</span> <a href="../modules/_transform_.html#reducer" class="tsd-signature-type">Reducer</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">A</span><span class="tsd-signature-symbol">&gt;</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/msiviero/stream-utils/blob/dcfbe77/src/transform.ts#L156">src/transform.ts:156</a></li>
+						</ul>
+					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>The reducer function used to aggregate items</p>
+						</div>
+					</div>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-inherited">
 					<a name="writable" class="tsd-anchor"></a>
@@ -470,7 +487,7 @@
 							<aside class="tsd-sources">
 								<p>Overrides <a href="_source_.splitter.html">Splitter</a>.<a href="_source_.splitter.html#_final">_final</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/msiviero/stream-utils/blob/065d8d2/src/transform.ts#L134">src/transform.ts:134</a></li>
+									<li>Defined in <a href="https://github.com/msiviero/stream-utils/blob/dcfbe77/src/transform.ts#L172">src/transform.ts:172</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -512,7 +529,7 @@
 							<aside class="tsd-sources">
 								<p>Overrides <a href="_transform_.map.html">Map</a>.<a href="_transform_.map.html#_flush">_flush</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/msiviero/stream-utils/blob/065d8d2/src/transform.ts#L129">src/transform.ts:129</a></li>
+									<li>Defined in <a href="https://github.com/msiviero/stream-utils/blob/dcfbe77/src/transform.ts#L167">src/transform.ts:167</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -560,7 +577,7 @@
 							<aside class="tsd-sources">
 								<p>Overrides Transform._transform</p>
 								<ul>
-									<li>Defined in <a href="https://github.com/msiviero/stream-utils/blob/065d8d2/src/transform.ts#L124">src/transform.ts:124</a></li>
+									<li>Defined in <a href="https://github.com/msiviero/stream-utils/blob/dcfbe77/src/transform.ts#L162">src/transform.ts:162</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -2836,9 +2853,6 @@
 							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-inherited">
 								<a href="_transform_.reduce.html#destroyed" class="tsd-kind-icon">destroyed</a>
 							</li>
-							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-private">
-								<a href="_transform_.reduce.html#fn" class="tsd-kind-icon">fn</a>
-							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-inherited">
 								<a href="_transform_.reduce.html#readable" class="tsd-kind-icon">readable</a>
 							</li>
@@ -2850,6 +2864,9 @@
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-inherited">
 								<a href="_transform_.reduce.html#readableobjectmode" class="tsd-kind-icon">readable<wbr>Object<wbr>Mode</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-private">
+								<a href="_transform_.reduce.html#reducer" class="tsd-kind-icon">reducer</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-inherited">
 								<a href="_transform_.reduce.html#writable" class="tsd-kind-icon">writable</a>

@@ -13,7 +13,7 @@ import { Writable } from "stream";
  *  });
  * ```
  *
- * @param T the type of record passed down by previous streams
+ * @typeParam T the type of record passed down by previous streams
  */
 export class Collect<T> extends Writable {
 

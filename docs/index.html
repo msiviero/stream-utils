@@ -76,10 +76,7 @@
 				</a>
 				<pre><code class="language-typescript">
 <span class="hljs-keyword">import</span> { createReadStream } <span class="hljs-keyword">from</span> <span class="hljs-string">"fs"</span>;
-<span class="hljs-keyword">import</span> { Splitter, Map } <span class="hljs-keyword">from</span> <span class="hljs-string">"./index"</span>;
-<span class="hljs-keyword">import</span> { Filter, Count, Distinct } <span class="hljs-keyword">from</span> <span class="hljs-string">"./transform"</span>;
-<span class="hljs-keyword">import</span> { Collect } <span class="hljs-keyword">from</span> <span class="hljs-string">"./sink"</span>;
-
+<span class="hljs-keyword">import</span> { Collect, Count, Distinct, Filter, Map, Splitter } <span class="hljs-keyword">from</span> <span class="hljs-string">"@msiviero/stream-utils"</span>;
 
 createReadStream(<span class="hljs-string">"./data/bigfile.txt"</span>)
     .pipe(<span class="hljs-keyword">new</span> Splitter({ separator: <span class="hljs-string">"\n"</span> }))

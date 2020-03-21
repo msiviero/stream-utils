@@ -14,11 +14,15 @@ export type MapFunction<T1, T2> = (item: T1) => T2;
  *  });
  * ```
  *
- * @param T1 the type of record passed down by previous streams
- * @param T2 the type returned by the mapping function passed to the following streams
+ * @typeParam T1 the type of record passed down by previous streams
+ * @typeParam T2 the type returned by the mapping function passed to the following streams
  */
 export class Map<T1, T2> extends Transform {
 
+    /**
+     * @param mapFunction The function used to map stream items
+     * @param opts The stream's options
+     */
     public constructor(private readonly mapFunction: MapFunction<T1, T2>, opts: TransformOptions = {}) {
         super({ objectMode: true, ...opts });
     }
@@ -29,6 +33,11 @@ export class Map<T1, T2> extends Transform {
     }
 }
 
+/**
+ * A function that takes an element and returns a boolean
+ *
+ * @typeParam T the type of record passed to the function
+ */
 export type Predicate<T> = (item: T) => boolean;
 
 /**
@@ -43,10 +52,14 @@ export type Predicate<T> = (item: T) => boolean;
  *  });
  * ```
  *
- * @param T the type of record passed down by previous streams
+ * @typeParam T the type of record passed down by previous streams
  */
 export class Filter<T> extends Transform {
 
+    /**
+     * @param predicate The predicate function used to filter the stream
+     * @param opts The stream's options
+     */
     constructor(private readonly predicate: Predicate<T>, opts: TransformOptions = {}) {
         super({ objectMode: true, ...opts });
         this.predicate = predicate;
@@ -60,6 +73,12 @@ export class Filter<T> extends Transform {
     }
 }
 
+/**
+ * A function that takes an element and returns a string representing it
+ *
+ * @typeParam T the type of record passed to the function
+ * @returns The string representation of the object
+ */
 export type SerializationFunction<T> = MapFunction<T, string>;
 
 /**
@@ -75,12 +94,16 @@ export type SerializationFunction<T> = MapFunction<T, string>;
  *  });
  * ```
  *
- * @param T the type of record passed down by previous streams
+ * @typeParam T the type of record passed down by previous streams
  */
 export class Distinct<T> extends Transform {
 
     private readonly seen: { [idx: string]: boolean } = {};
 
+    /**
+     * @param serializationFunction The serialization function used to test items equality
+     * @param opts The stream's options
+     */
     constructor(
         private readonly serializationFunction: SerializationFunction<T>,
         opts: TransformOptions = {},
@@ -98,6 +121,14 @@ export class Distinct<T> extends Transform {
     }
 }
 
+/**
+ * A function that takes an element and an aggergator item and return a new aggregators state
+ *
+ * @typeParam T the type of record passed to the function
+ * @typeParam A the type of the aggregator object
+ *
+ * @returns The new aggregator state
+ */
 export type Reducer<T, A> = (item: T, accumulator: A) => A;
 
 /**
@@ -112,17 +143,24 @@ export type Reducer<T, A> = (item: T, accumulator: A) => A;
  *  });
  * ```
  *
- * @param T the type of record passed down by previous streams
- * @param A the type of aggregation result
+ * @typeParam T the type of record passed down by previous streams
+ * @typeParam A the type of aggregation result
  */
 export class Reduce<T, A> extends Transform {
 
-    constructor(private readonly fn: Reducer<T, A>, private accumulator: A, opts: TransformOptions = {}) {
+    /**
+     * @param reducer The reducer function used to aggregate items
+     * @param opts The stream's options
+     */
+    constructor(
+        private readonly reducer: Reducer<T, A>,
+        private accumulator: A, opts: TransformOptions = {},
+    ) {
         super({ objectMode: true, ...opts });
     }
 
     public _transform(object: T, _: string, callback: TransformCallback) {
-        this.accumulator = this.fn(object, this.accumulator);
+        this.accumulator = this.reducer(object, this.accumulator);
         callback();
     }
 
@@ -149,6 +187,7 @@ export class Reduce<T, A> extends Transform {
  * ```
  */
 export class Count extends Reduce<unknown, number> {
+
     constructor() {
         super((_, acc) => ++acc, 0);
     }
@@ -165,12 +204,16 @@ export class Count extends Reduce<unknown, number> {
  *      console.log(chunks); // [1, 2]
  *  });
  * ```
- * @param T the type of record passed down by previous streams
+ * @typeParam T the type of record passed down by previous streams
  */
 export class Limit<T> extends Transform {
 
     private count = 0;
 
+    /**
+     * @param limit The number of items after which the stream should end
+     * @param opts The stream's options
+     */
     constructor(private readonly limit: number, opts: TransformOptions = {}) {
         super({ objectMode: true, ...opts });
     }
@@ -196,10 +239,14 @@ export class Limit<T> extends Transform {
  *      console.log(chunks); // [1, 2, 3, 4, 5, 6, 7]
  *  });
  * ```
- * @param T the type of record passed down by previous streams
+ * @typeParam T the type of record passed down by previous streams
  */
 export class FlatMap<T1, T2> extends Transform {
 
+    /**
+     * @param mapFunction The map function used map items
+     * @param opts The stream's options
+     */
     public constructor(
         private readonly mapFunction: MapFunction<T1, T2>,
         opts: TransformOptions = {},
