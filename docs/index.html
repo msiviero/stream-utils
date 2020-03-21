@@ -86,10 +86,10 @@ createReadStream(<span class="hljs-string">"./data/bigfile.txt"</span>)
     .pipe(<span class="hljs-keyword">new</span> Filter(<span class="hljs-function">(<span class="hljs-params">columns: <span class="hljs-built_in">string</span>[]</span>) =&gt;</span> columns[<span class="hljs-number">0</span>] === <span class="hljs-string">"to_keep"</span>))
     .pipe(<span class="hljs-keyword">new</span> Count())
     .pipe(<span class="hljs-keyword">new</span> Collect())
-    .on(<span class="hljs-string">"end"</span>, <span class="hljs-function">(<span class="hljs-params">items</span>) =&gt;</span> {
-        <span class="hljs-built_in">console</span>.log(<span class="hljs-string">`Countr of remaining records is: <span class="hljs-subst">${items[<span class="hljs-number">0</span>]}</span>`</span>);
+    .on(<span class="hljs-string">"close"</span>, <span class="hljs-function">(<span class="hljs-params">items: <span class="hljs-built_in">number</span>[]</span>) =&gt;</span> {
+        <span class="hljs-built_in">console</span>.log(<span class="hljs-string">`Count of remaining records is: <span class="hljs-subst">${items[<span class="hljs-number">0</span>]}</span>`</span>);
     });</code></pre>
-				<p>Typedocs with full documentation at [<a href="https://msiviero.github.io/stream-utils/index.html%5D">https://msiviero.github.io/stream-utils/index.html]</a></p>
+				<p>Typedocs with full documentation at <a href="https://msiviero.github.io/stream-utils">https://msiviero.github.io/stream-utils</a></p>
 			</div>
 		</div>
 		<div class="col-4 col-menu menu-sticky-wrap menu-highlight">

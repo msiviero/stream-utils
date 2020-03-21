@@ -20,7 +20,7 @@ createReadStream("./data/bigfile.txt")
     .pipe(new Filter((columns: string[]) => columns[0] === "to_keep"))
     .pipe(new Count())
     .pipe(new Collect())
-    .on("end", (items) => {
+    .on("close", (items: number[]) => {
         console.log(`Count of remaining records is: ${items[0]}`);
     });
 ```
