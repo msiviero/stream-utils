@@ -21,7 +21,7 @@ createReadStream("./data/bigfile.txt")
     .pipe(new Count())
     .pipe(new Collect())
     .on("end", (items) => {
-        console.log(`Countr of remaining records is: ${items[0]}`);
+        console.log(`Count of remaining records is: ${items[0]}`);
     });
 ```
 
