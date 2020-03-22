@@ -5,7 +5,9 @@
 npm i @msiviero/stream-utils
 ```
 
-Typedocs with full documentation at https://msiviero.github.io/stream-utils
+## Installation
+
+Typedocs with full documentation and examples are available at https://msiviero.github.io/stream-utils
 
 ## Samples
 
