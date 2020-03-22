@@ -1,6 +1,6 @@
 {
   "name": "@msiviero/stream-utils",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "main": "./dist/index.js",
   "types": "./dist/index.d.ts",
   "license": "MIT",
@@ -15,7 +15,7 @@
   ],
   "description": "Stream utils that provide same abstraction as array's map, filter, reduce",
   "scripts": {
-    "build": "npm run-script clean && tsc -p ./tsconfig.build.json",
+    "build": "npm run-script clean && tsc -p ./tsconfig.build.json && npm run-script docs",
     "test": "jest",
     "lint": "tslint -c ./tslint.json -p tsconfig.json",
     "clean": "rimraf dist",
