@@ -93,13 +93,15 @@ createReadStream(<span class="hljs-string">"./data/bigfile.txt"</span>)
     .pipe(<span class="hljs-keyword">new</span> Collect())
     .on(<span class="hljs-string">"close"</span>, <span class="hljs-function">(<span class="hljs-params">items: <span class="hljs-built_in">number</span>[]</span>) =&gt;</span> {
         <span class="hljs-built_in">console</span>.log(<span class="hljs-string">`Count of remaining records is: <span class="hljs-subst">${items[<span class="hljs-number">0</span>]}</span>`</span>);
-    });</code></pre>
+    });
+</code></pre>
 				<a href="#an-http-request-is-a-stream-too" id="an-http-request-is-a-stream-too" style="color: inherit; text-decoration: none;">
 					<h3>An http request is a stream too</h3>
 				</a>
 				<p>A node.js server&#39;s request is a readable stream, so you can receive a large request body
 				and processing can be done just in time chunk per chunk, without having to fit it in memory</p>
-				<pre><code class="language-typescript"><span class="hljs-keyword">import</span> { Collect, Count, Distinct, Map, Splitter } <span class="hljs-keyword">from</span> <span class="hljs-string">"@msiviero/stream-utils"</span>;
+				<pre><code class="language-typescript">
+<span class="hljs-keyword">import</span> { Collect, Count, Distinct, Map, Splitter } <span class="hljs-keyword">from</span> <span class="hljs-string">"@msiviero/stream-utils"</span>;
 <span class="hljs-keyword">import</span> { createServer } <span class="hljs-keyword">from</span> <span class="hljs-string">"http"</span>;
 
 
@@ -114,7 +116,8 @@ createServer(<span class="hljs-function">(<span class="hljs-params">request, res
       response.end(<span class="hljs-string">`Request body contains <span class="hljs-subst">${items[<span class="hljs-number">0</span>]}</span> lines`</span>);
     });
 })
-  .listen(<span class="hljs-number">9000</span>);</code></pre>
+  .listen(<span class="hljs-number">9000</span>);
+</code></pre>
 				<a href="#node-provides-built-in-streams" id="node-provides-built-in-streams" style="color: inherit; text-decoration: none;">
 					<h3>Node provides built-in streams</h3>
 				</a>
@@ -128,10 +131,12 @@ createServer(<span class="hljs-function">(<span class="hljs-params">request, res
 					<li>child process stdin, stdout and stderr</li>
 					<li>process.stdin process.stdout, process.stderr</li>
 				</ul>
-				<a href="#an-example-of-http-server-that-receives-a-text-body-parse-it-deduplicates-lines-and-then-creates-a-gzip-file-with-the-content" id="an-example-of-http-server-that-receives-a-text-body-parse-it-deduplicates-lines-and-then-creates-a-gzip-file-with-the-content" style="color: inherit; text-decoration: none;">
-					<h4>an example of http server that receives a text body, parse it, deduplicates lines and then creates a gzip file with the content</h4>
+				<a href="#built-in-writable-usage-of-zlib-library" id="built-in-writable-usage-of-zlib-library" style="color: inherit; text-decoration: none;">
+					<h4>Built in writable usage of zlib library</h4>
 				</a>
-				<pre><code class="language-typescript"><span class="hljs-keyword">import</span> { Distinct, Map, Splitter } <span class="hljs-keyword">from</span> <span class="hljs-string">"@msiviero/stream-utils"</span>;
+				<p>An example of http server that receives a text body, parse it, deduplicates lines and then creates a gzip file with the content</p>
+				<pre><code class="language-typescript">
+<span class="hljs-keyword">import</span> { Distinct, Map, Splitter } <span class="hljs-keyword">from</span> <span class="hljs-string">"@msiviero/stream-utils"</span>;
 <span class="hljs-keyword">import</span> { createWriteStream } <span class="hljs-keyword">from</span> <span class="hljs-string">"fs"</span>;
 <span class="hljs-keyword">import</span> { createServer } <span class="hljs-keyword">from</span> <span class="hljs-string">"http"</span>;
 <span class="hljs-keyword">import</span> { createGzip } <span class="hljs-keyword">from</span> <span class="hljs-string">"zlib"</span>;
@@ -147,11 +152,14 @@ createServer(<span class="hljs-function">(<span class="hljs-params">request, res
     .pipe(createWriteStream(<span class="hljs-string">"request.gz"</span>))
     .on(<span class="hljs-string">"close"</span>, <span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> response.end());
 })
-  .listen(<span class="hljs-number">9000</span>);</code></pre>
-				<a href="#an-example-of-http-server-that-receives-a-gzipped-file-as-body-parse-it-deduplicates-and-count-the-lines-and-then-finally-pipes-to-the-response-stream" id="an-example-of-http-server-that-receives-a-gzipped-file-as-body-parse-it-deduplicates-and-count-the-lines-and-then-finally-pipes-to-the-response-stream" style="color: inherit; text-decoration: none;">
-					<h4>an example of http server that receives a gzipped file as body, parse it, deduplicates and count the lines and then finally pipes to the response stream</h4>
+  .listen(<span class="hljs-number">9000</span>);
+</code></pre>
+				<a href="#built-in-readable-usage-of-zlib-library" id="built-in-readable-usage-of-zlib-library" style="color: inherit; text-decoration: none;">
+					<h4>Built in readable usage of zlib library</h4>
 				</a>
-				<pre><code class="language-typescript"><span class="hljs-keyword">import</span> { Count, Distinct, Map, Splitter } <span class="hljs-keyword">from</span> <span class="hljs-string">"@msiviero/stream-utils"</span>;
+				<p>An example of http server that receives a gzipped file as body, parse it, the distinct lines and then pipes to the response stream</p>
+				<pre><code class="language-typescript">
+<span class="hljs-keyword">import</span> { Count, Distinct, Map, Splitter } <span class="hljs-keyword">from</span> <span class="hljs-string">"@msiviero/stream-utils"</span>;
 <span class="hljs-keyword">import</span> { createServer } <span class="hljs-keyword">from</span> <span class="hljs-string">"http"</span>;
 <span class="hljs-keyword">import</span> { createGunzip } <span class="hljs-keyword">from</span> <span class="hljs-string">"zlib"</span>;
 

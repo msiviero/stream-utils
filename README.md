@@ -30,6 +30,7 @@ createReadStream("./data/bigfile.txt")
     .on("close", (items: number[]) => {
         console.log(`Count of remaining records is: ${items[0]}`);
     });
+
 ```
 
 ### An http request is a stream too
@@ -38,6 +39,7 @@ A node.js server's request is a readable stream, so you can receive a large requ
 and processing can be done just in time chunk per chunk, without having to fit it in memory
 
 ```typescript
+
 import { Collect, Count, Distinct, Map, Splitter } from "@msiviero/stream-utils";
 import { createServer } from "http";
 
@@ -54,6 +56,7 @@ createServer((request, response) => {
     });
 })
   .listen(9000);
+
 ```
 
 ### Node provides built-in streams
@@ -69,9 +72,12 @@ That can be used as a source or sink for transformations provided by this packag
 - process.stdin process.stdout, process.stderr
 
 
-#### an example of http server that receives a text body, parse it, deduplicates lines and then creates a gzip file with the content
+#### Built in writable usage of zlib library
+
+An example of http server that receives a text body, parse it, deduplicates lines and then creates a gzip file with the content
 
 ```typescript
+
 import { Distinct, Map, Splitter } from "@msiviero/stream-utils";
 import { createWriteStream } from "fs";
 import { createServer } from "http";
@@ -89,12 +95,15 @@ createServer((request, response) => {
     .on("close", () => response.end());
 })
   .listen(9000);
+
 ```
 
+#### Built in readable usage of zlib library
 
-#### an example of http server that receives a gzipped file as body, parse it, deduplicates and count the lines and then finally pipes to the response stream
+An example of http server that receives a gzipped file as body, parse it, the distinct lines and then pipes to the response stream
 
 ``` typescript
+
 import { Count, Distinct, Map, Splitter } from "@msiviero/stream-utils";
 import { createServer } from "http";
 import { createGunzip } from "zlib";
