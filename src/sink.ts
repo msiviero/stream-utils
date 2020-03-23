@@ -17,14 +17,14 @@ import { Writable } from "stream";
  */
 export class Collect<T> extends Writable {
 
-    readonly #chunks: T[] = [];
+    private readonly chunks: T[] = [];
 
     constructor() {
         super({ objectMode: true });
     }
 
     public _write(chunk: T, _: string, done: (error?: Error | null) => void) {
-        this.#chunks.push(chunk);
+        this.chunks.push(chunk);
         done();
     }
 
@@ -33,5 +33,5 @@ export class Collect<T> extends Writable {
         done();
     }
 
-    public written = () => [...this.#chunks];
+    public written = () => [...this.chunks];
 }
