@@ -226,12 +226,11 @@ export class Limit<T> extends Transform {
     }
 
     public _transform(object: T, _: string, callback: TransformCallback) {
-        this.push(object);
-        callback();
-        this.count++;
-        if (this.count >= this.limit) {
-            this.end();
+        if (this.count < this.limit) {
+            this.push(object);
         }
+        this.count++;
+        callback();
     }
 }
 
